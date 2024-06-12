@@ -1,0 +1,14 @@
+.avatar {
+  background-color: #f6f6f6;
+  width: 40px;
+  height: 40px;
+  border-radius: 100rem;
+  overflow: hidden;
+  border: 5px solid gainsboro;
+  transition: all 0.25s ease-in;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

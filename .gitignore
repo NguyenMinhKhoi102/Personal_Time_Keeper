@@ -1,0 +1,75 @@
+# Bỏ qua các thư mục và tệp của hệ điều hành
+[Dd]esktop.ini
+[Tt]humbs.db
+ehthumbs.db
+*.DS_Store
+
+# Bỏ qua các thư mục và tệp của Visual Studio
+.vscode/
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.cache
+*.ncrunchsolution
+*.ncrunchproject
+*_ReSharper.*
+_ReSharper.Caches/
+.vscode/
+
+# Bỏ qua các tệp nhật ký, tạm thời và bộ nhớ cache
+*.log
+*.tlog
+*.cache
+*.msp
+*.pdb
+*.mdb
+*.ilk
+*.meta
+*.tmp
+*.svclog
+*.dotCover
+*.coverage
+*.coveragexml
+*.css.map
+*.js.map
+*.dat
+*.pdb
+*.ide
+*.pidb
+*.aps
+*.res
+
+# Bỏ qua các tệp nhị phân và tệp đầu ra của Visual Studio
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Tt]est[Rr]esult*
+
+# Bỏ qua thư mục `node_modules` và các tệp lock của npm/yarn
+node_modules/
+yarn.lock
+package-lock.json
+
+# Bỏ qua các tệp cấu hình cho CI/CD và các tệp tự động tạo
+.vs/
+*.vs/
+.vscode/
+*.ncrunch*
+*.dotSettings.user
+*.local
+*.generated.cs
+*.csproj.user
+
+# Bỏ qua các tệp và thư mục của hệ điều hành
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Bỏ qua các tệp liên quan đến nuget
+*.nupkg
+*.snupkg
+.nuget/
