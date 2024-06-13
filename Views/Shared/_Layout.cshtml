@@ -9,69 +9,86 @@
     <title>@ViewData["Title"] - MyProject</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body x-data="{siderStatus: true}">
-    <header class="header">
-        <div class="header-left">
-            <div class="header-icon" x-on:click="siderStatus = !siderStatus">
-                <i class="fa fa-bars"></i>
-            </div>
-            <div class="header-logo">
-                <img src="~/images/logo-purple.svg" alt="">
-            </div>
+<body>
+    @{
+        bool isLoginPage = ViewData["IsLoginPage"] as bool? ?? false;
+    }
+    @if (isLoginPage)
+    {
+        <div id="login">
+            @RenderBody()
         </div>
-        <div class="header-right">
-            <i class="fa fa-sign-out"></i>
-            Logout
-        </div>
-    </header>
-    <main class="main">
-        <div :class="`main-sider${siderStatus ? ' active' : ''}`">
-            <div class="sider-container">
-                <div class="sider-header">
-                    <div class="avatar">
-                        <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/9/24/1097116/Avatar.jpeg" alt="">
+    }
+    else
+    {
+        <div id="app" x-data="{siderStatus: true}">
+            <header class="header">
+                <div class="header-left">
+                    <div class="header-icon" x-on:click="siderStatus = !siderStatus">
+                        <i class="fa fa-bars"></i>
                     </div>
-                    <div :class="`dropdown${open ? ' active': ''}`" x-data="{ open: false }" x-on:click="open = !open">
-                        <div class="dropdown-select">
-                            <div class="dropdown-value">
-                                Khoi Nguyen
+                    <div class="header-logo">
+                        <img src="~/images/logo-purple.svg" alt="">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <form asp-action="Logout" asp-controller="Account" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-link"><i class="fa fa-sign-out"></i> Logout</button>
+                    </form>
+                </div>
+            </header>
+            <main class="main">
+                <div :class="`main-sider${siderStatus ? ' active' : ''}`">
+                    <div class="sider-container">
+                        <div class="sider-header">
+                            <div class="avatar">
+                                <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/9/24/1097116/Avatar.jpeg" alt="">
                             </div>
-                            <div class="dropdown-icon">
-                                <i class="fa fa-caret-down"></i>
+                            <div :class="`dropdown${open ? ' active': ''}`" x-data="{ open: false }" x-on:click="open = !open">
+                                <div class="dropdown-select">
+                                    <div class="dropdown-value">
+                                        Khoi Nguyen
+                                    </div>
+                                    <div class="dropdown-icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-list">
+                                    <li class="dropdown-item">Profile</li>
+                                    <li class="dropdown-item">Logout</li>
+                                </ul>
                             </div>
                         </div>
-                        <ul class="dropdown-list">
-                            <li class="dropdown-item">Profile</li>
-                            <li class="dropdown-item">Logout</li>
+                        <ul class="sider-main">
+                            <template x-for="n in 2">
+                                <li class="sider-item">
+                                    <div class="sider-icon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <span class="sider-text">Log work</span>
+                                </li>
+                            </template>
+                        </ul>
+                        <ul class="sider-footer">
+                            <li class="sider-item">
+                                <div class="sider-icon">
+                                    <i class="fa fa-cogs"></i>
+                                </div>
+                                <span class="sider-text">Setting</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <ul class="sider-main">
-                    <template x-for="n in 2">
-                        <li class="sider-item">
-                            <div class="sider-icon">
-                                <i class="fa fa-clock-o"></i>
-                            </div>
-                            <span class="sider-text">Log work</span>
-                        </li>
-                    </template>
-                </ul>
-                <ul class="sider-footer">
-                    <li class="sider-item">
-                        <div class="sider-icon">
-                            <i class="fa fa-cogs"></i>
-                        </div>
-                        <span class="sider-text">Setting</span>
-                    </li>
-                </ul>
-            </div>
+                <div class="main-body">
+                    @RenderBody()
+                </div>
+            </main>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            @await RenderSectionAsync("Scripts", required: false)
         </div>
-        <div class="main-body">
-            @RenderBody()
-        </div>
-    </main>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    }
 </body>
+
 </html>
 
