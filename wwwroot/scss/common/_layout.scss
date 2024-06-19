@@ -1,175 +1,186 @@
 ﻿#login {
-  height: 100vh;
-  background: center / cover no-repeat rgb(46, 6, 128)
-    url("https://srm.siliconstack.com.au/images/frame.png");
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  .login {
-    &-form {
-      width: 500px;
-      padding: 40px 80px;
-      background: rgba(27, 1, 83, 0.2);
+    height: 100vh;
+    background: center / cover no-repeat rgb(46, 6, 128) url("https://srm.siliconstack.com.au/images/frame.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 16px;
+
+    .login {
+        &-form {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 80px;
+            background: rgba(27, 1, 83, 0.2);
+        }
+
+        &-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        &-slogan {
+            font-size: 38px;
+            font-weight: 600;
+            line-height: 46px;
+            text-align: center;
+        }
     }
-    &-logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    &-slogan {
-      font-size: 38px;
-      font-weight: 600;
-      line-height: 46px;
-      text-align: center;
-    }
-  }
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  background: #31bfe0;
-  padding: 10px;
-  color: #330066;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  box-shadow: 0 0 2px grey;
-
-  &-left {
-    height: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
-  }
+    justify-content: space-between;
+    height: 60px;
+    background: #31bfe0;
+    padding: 10px;
+    color: #330066;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    box-shadow: 0 0 2px grey;
 
-  &-icon {
-    font-weight: 500;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    transition: all 0.15s ease-in;
-
-    &:hover {
-      background-color: gainsboro;
+    &-left {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
-  }
 
-  &-logo {
-    height: 70%;
+    &-icon {
+        font-weight: 500;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+        transition: all 0.15s ease-in;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+        &:hover {
+            background-color: gainsboro;
+        }
     }
-  }
 
-  &-right {
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
+    &-logo {
+        height: 70%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &-right {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
 }
 
 .main {
-  display: flex;
+    display: flex;
 
-  &-sider {
-    background: #31bfe0;
-    width: 70px;
-    height: calc(100vh - 60px);
-    transition: all 0.25s ease-in;
-    overflow: hidden;
+    &-sider {
+        background: #31bfe0;
+        width: 70px;
+        height: calc(100vh - 60px);
+        transition: all 0.25s ease-in;
+        overflow: hidden;
 
-    &.active {
-      width: 220px;
+        &.active {
+            width: 220px;
 
-      .avatar {
-        width: 60px;
-        height: 60px;
-      }
+            .avatar {
+                width: 60px;
+                height: 60px;
+            }
 
-      .dropdown {
-        transform: translateY(8px);
-      }
+            .dropdown {
+                transform: translateY(8px);
+            }
 
-      .dropdown-select {
-        height: 24px;
-        opacity: 1;
-        visibility: visible;
-        transition-delay: 0.1s;
-      }
+            .dropdown-select {
+                height: 24px;
+                opacity: 1;
+                visibility: visible;
+                transition-delay: 0.1s;
+            }
 
-      .sider-main {
-        overflow: auto;
-      }
+            .sider-main {
+                overflow: auto;
+            }
 
-      .sider-text {
-        opacity: 1;
-        visibility: visible;
-      }
+            .sider-text {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
     }
-  }
+
+    &-body {
+        flex: 1;
+        position: relative;
+        padding: 16px;
+        background-color: whitesmoke;
+    }
 }
 
 .sider {
-  &-container {
-    height: 100%;
-    padding-inline: 16px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &-header {
-    padding-block: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &-main {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    border-top: 1px solid rgba(220, 220, 220, 0.564);
-    border-bottom: 1px solid rgba(220, 220, 220, 0.564);
-
-    &::-webkit-scrollbar {
-      display: none;
+    &-container {
+        height: 100%;
+        padding-inline: 16px;
+        display: flex;
+        flex-direction: column;
     }
-  }
 
-  &-icon {
-    min-width: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &-item {
-    padding: 12px 0;
-    margin-block: 8px;
-    border-radius: 4px;
-    display: flex;
-    gap: 8px;
-
-    &:hover {
-      background-color: #0000002c;
+    &-header {
+        padding-block: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-  }
 
-  &-text {
-    opacity: 0;
-    visibility: hidden;
-    white-space: nowrap;
-    transition: all 0.25s ease-in;
-  }
+    &-main {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border-top: 1px solid rgba(220, 220, 220, 0.564);
+        border-bottom: 1px solid rgba(220, 220, 220, 0.564);
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &-icon {
+        min-width: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-item {
+        padding: 12px 0;
+        margin-block: 8px;
+        border-radius: 4px;
+        display: flex;
+        gap: 8px;
+
+        &:hover {
+            background-color: #0000002c;
+        }
+    }
+
+    &-text {
+        opacity: 0;
+        visibility: hidden;
+        white-space: nowrap;
+        transition: all 0.25s ease-in;
+    }
 }

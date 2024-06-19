@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using MyProject.AppData;
+using MyProject.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = "/Account/Index";
         options.AccessDeniedPath = "/Account/Index";
     });
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AuthenticatedUser", policy =>
@@ -26,6 +28,11 @@ builder.Services.AddAuthorization(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
+
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IActivityTypeService, ActivityTypeService>();
+builder.Services.AddScoped<ILogTimeService, LogTimeService>();
 
 var app = builder.Build();
 

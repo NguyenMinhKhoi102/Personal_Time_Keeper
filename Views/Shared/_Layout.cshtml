@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <title>@ViewData["Title"] - MyProject</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </head>
 <body>
+    <script src="~/vendor/axios.min.js"></script>
     @{
         bool isLoginPage = ViewData["IsLoginPage"] as bool? ?? false;
     }
@@ -34,7 +35,7 @@
                 <div class="header-right">
                     <form asp-action="Logout" asp-controller="Account" method="post">
                         @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-link"><i class="fa fa-sign-out"></i> Logout</button>
+                        <button type="submit"><i class="fa fa-sign-out"></i> Logout</button>
                     </form>
                 </div>
             </header>
@@ -42,9 +43,9 @@
                 <div :class="`main-sider${siderStatus ? ' active' : ''}`">
                     <div class="sider-container">
                         <div class="sider-header">
-                            <div class="avatar">
+                            <a href="/Account/Edit" class="avatar">
                                 <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/9/24/1097116/Avatar.jpeg" alt="">
-                            </div>
+                            </a>
                             <div :class="`dropdown${open ? ' active': ''}`" x-data="{ open: false }" x-on:click="open = !open">
                                 <div class="dropdown-select">
                                     <div class="dropdown-value">
@@ -88,6 +89,7 @@
             @await RenderSectionAsync("Scripts", required: false)
         </div>
     }
+    <script defer src="~/vendor/alpine.min.js"></script>
 </body>
 
 </html>

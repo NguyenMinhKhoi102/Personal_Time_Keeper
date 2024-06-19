@@ -1,0 +1,33 @@
+﻿.edit {
+
+
+    &-page {
+        padding: 16px;
+        background-color: #fff;
+        height: 100%;
+    }
+
+    &-name {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.5;
+        color: grey;
+        margin-bottom: 1em;
+    }
+
+    &-container {
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-width: 10px;
+        }
+    }
+}

@@ -1,27 +1,27 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Login";
 }
-
-@model Account
-
-<div class="login-form">
+<div class="login-form" x-data="login">
     <div class="login-logo">
         <img src="https://srm.siliconstack.com.au/images/login-logo.png" alt="">
     </div>
     <div class="login-slogan">
         Welcome back !
     </div>
-    <form asp-action="Index" method="post">
-        <div class="form-group">
-            <input asp-for="Email" class="form-control"/>
-            <label asp-for="Email" class="form-label"></label>
+    <form method="post" x-on:submit.prevent="submitLogin">
+        <div class="form-group form-group__none-label">
+            <input x-model="payload.email" class="form-control" placeholder=" " autocomplete="off" />
+            <label class="form-label">Email</label>
         </div>
-        <div class="form-group">
-            <input asp-for="Password" type="password" class="form-control"/>
-            <label asp-for="Password" class="form-label"></label>
+        <div class="form-group form-group__none-label">
+            <input x-model="payload.password" type="password" class="form-control" placeholder=" " />
+            <label class="form-label">Password</label>
         </div>
+        <div x-text="message" class="text-error"></div>
         <button type="submit" class="btn btn-submit">Login</button>
     </form>
 </div>
+
+<script src="~/js/app/login.js" type="module"></script>
+
 

@@ -11,7 +11,7 @@ using MyProject.AppData;
 namespace MyProject.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240612031348_InitialCreate")]
+    [Migration("20240619093316_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,6 +36,11 @@ namespace MyProject.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Phone")
@@ -59,6 +64,7 @@ namespace MyProject.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -75,44 +81,23 @@ namespace MyProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ActivityTypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
                     b.Property<float>("Duration")
                         .HasColumnType("float");
 
                     b.Property<DateOnly>("LogDate")
                         .HasColumnType("date");
-
-                    b.Property<int>("LogTimeSummaryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityTypeId");
-
-                    b.HasIndex("LogTimeSummaryId");
-
-                    b.ToTable("LogTimes");
-                });
-
-            modelBuilder.Entity("MyProject.Models.LogTimeSummary", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
@@ -121,50 +106,36 @@ namespace MyProject.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("LogTimeSummaries");
+                    b.HasIndex("ActivityTypeId");
+
+                    b.ToTable("LogTimes");
                 });
 
             modelBuilder.Entity("MyProject.Models.LogTime", b =>
                 {
+                    b.HasOne("MyProject.Models.Account", "Account")
+                        .WithMany("LogTimes")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MyProject.Models.ActivityType", "ActivityType")
                         .WithMany("LogTimes")
                         .HasForeignKey("ActivityTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyProject.Models.LogTimeSummary", "LogTimeSummary")
-                        .WithMany("LogTimes")
-                        .HasForeignKey("LogTimeSummaryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Account");
 
                     b.Navigation("ActivityType");
-
-                    b.Navigation("LogTimeSummary");
-                });
-
-            modelBuilder.Entity("MyProject.Models.LogTimeSummary", b =>
-                {
-                    b.HasOne("MyProject.Models.Account", "Account")
-                        .WithMany("LogTimeSummaries")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("MyProject.Models.Account", b =>
                 {
-                    b.Navigation("LogTimeSummaries");
-                });
-
-            modelBuilder.Entity("MyProject.Models.ActivityType", b =>
-                {
                     b.Navigation("LogTimes");
                 });
 
-            modelBuilder.Entity("MyProject.Models.LogTimeSummary", b =>
+            modelBuilder.Entity("MyProject.Models.ActivityType", b =>
                 {
                     b.Navigation("LogTimes");
                 });

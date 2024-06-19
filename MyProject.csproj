@@ -15,11 +15,18 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.20" />
+    <PackageReference Include="BCrypt.Net" Version="0.1.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="AppData\" />
     <None Remove="Migrations\" />
     <None Remove="Views\Account\" />
+    <None Remove="ApiControllers\" />
+    <None Remove="Payload\" />
+    <None Remove="Payload\Request\" />
+    <None Remove="Service\" />
+    <None Remove="Payload\Response\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppData\" />
@@ -29,11 +36,24 @@
     <Folder Include="wwwroot\scss\variables\" />
     <Folder Include="wwwroot\scss\components\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="wwwroot\scss\pages\" />
+    <Folder Include="ApiControllers\" />
+    <Folder Include="Payload\" />
+    <Folder Include="Payload\Request\" />
+    <Folder Include="Service\" />
+    <Folder Include="Payload\Response\" />
+    <Folder Include="wwwroot\vendor\" />
+    <Folder Include="wwwroot\js\app\" />
+    <Folder Include="wwwroot\js\app\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\scss\" />
     <Content Remove="wwwroot\scss\common\" />
     <Content Remove="wwwroot\scss\variables\" />
     <Content Remove="wwwroot\scss\components\" />
+    <Content Remove="wwwroot\scss\pages\" />
+    <Content Remove="wwwroot\vendor\" />
+    <Content Remove="wwwroot\js\app\" />
+    <Content Remove="wwwroot\js\app\services\" />
   </ItemGroup>
 </Project>

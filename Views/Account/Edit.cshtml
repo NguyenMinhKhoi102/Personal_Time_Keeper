@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="edit-page" x-data="accountEdit" x-init="fetchData()">
+    <div :class="`spinner-container${spinner ? ' active' : ''}`">
+        <div class="spinner"></div>
+    </div>
+    <div class="edit-container">
+        <div class="avatar">
+            <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/9/24/1097116/Avatar.jpeg" alt="" />
+        </div>
+        <div class="edit-name" x-text="payload.email"></div>
+        <form class="form" x-on:submit.prevent="submitForm()">
+            <div class="form-group">
+                <label class="form-label">Full name <span class="text-red">*</span></label>
+                <input x-model="payload.fullName" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email <span class="text-red">*</span></label>
+                <input x-model="payload.email" type="email" class="form-control" disabled value="123" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input x-model="payload.phone" type="text" class="form-control" />
+            </div>
+            <button type="submit" class="btn">Save</button>
+        </form>
+    </div>
+</div>
+<script src="~/js/app/login.js" type="module"></script>

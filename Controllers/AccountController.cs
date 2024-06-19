@@ -29,32 +29,25 @@ public class AccountController : Controller
         return View();
     }
 
+    [AllowAnonymous]
+    public IActionResult Register()
+    {
+        ViewData["IsLoginPage"] = true;
+        return View();
+    }
+
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> Index(Account account, string? returnUrl = null)
+    public IActionResult Register(Account account)
     {
         if (ModelState.IsValid)
         {
-            if (IsValidUser(account.Email, account.Password))
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, account.Email)
-                };
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            _context.Accounts.Add(account);
+            _context.SaveChanges();
 
-                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
-                }
-            }
-            ModelState.AddModelError(string.Empty, "Đăng nhập không hợp lệ.");
+            return RedirectToAction("Index", "Account");
         }
         ViewData["IsLoginPage"] = true;
         return View(account);
@@ -68,9 +61,19 @@ public class AccountController : Controller
         return RedirectToAction(nameof(HomeController.Index), "Home");
     }
 
-    private static bool IsValidUser(string email, string password)
+    private bool IsValidUser(string email, string password)
     {
-        return email == "test" && password == "password";
+        var account = _context.Accounts.FirstOrDefault(a => a.Email == email);
+        if (account == null)
+        {
+            return false;
+        }
+        return BCrypt.Net.BCrypt.Verify(password, account.Password);
+    }
+
+    public IActionResult Edit()
+    {
+        return View();
     }
 
     public ILogger<HomeController> GetLogger()

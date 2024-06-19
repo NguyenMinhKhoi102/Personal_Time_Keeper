@@ -8,8 +8,12 @@
 @import "./common/global";
 @import "./common/layout";
 
+//page
+@import "./pages/account";
+
 // components
 @import "./components/avatar";
 @import "./components/button";
 @import "./components/dropdown";
 @import "./components/form";
+@import "./components/spinner";
