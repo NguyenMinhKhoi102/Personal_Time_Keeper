@@ -2,7 +2,204 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div>
-    123
+<div x-data="logTime" x-init="onInit()">
+    <div class="modal" x-show="modalStatus">
+        <div class="modal-container ibox" x-show="modalStatus" x-transition>
+            <div :class="`spinner-container${spinner2 ? ' active' : ''}`">
+                <div class="spinner"></div>
+            </div>
+            <div class="ibox-header">
+                <div class="ibox-name" style="flex: 1; font-size: 20px; line-height: 30px;">Log Time</div>
+                <ul class="ibox-actions">
+                    <li class="ibox-icon" x-on:click="modalStatus = false">
+                        <i class="fa fa-close"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="ibox-body">
+                <div class="ibox-content" style="resize: none">
+                    <form x-on:submit.prevent="onSubmitEditLogTime()">
+                        <div class="form-group">
+                            <label class="form-label">Log Date <span class="text-red">*</span></label>
+                            <input class="form-control" type="date" x-model="editPayload.logDate" />
+                            <div class="form-message form-message__error" x-text="editErrors.logDate"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Activity Type <span class="text-red">*</span></label>
+                            <div class="form-select">
+                                <select class="form-control" x-model="editPayload.activityTypeId">
+                                    <template x-for="activityType in activityTypeList" :key="activityType.id">
+                                        <option :value="activityType.id" x-text="activityType.name"></option>
+                                    </template>
+                                </select>
+                            </div>
+                            <div class="form-message form-message__error" x-text="editErrors.activityType"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Duration <span class="text-red">*</span></label>
+                            <input class="form-control" type="number" step="0.25" x-model="editPayload.duration" />
+                            <div class="form-message form-message__error" x-text="editErrors.duration"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" x-model="editPayload.description"></textarea>
+                            <div class="form-message form-message__error"></div>
+                        </div>
+                        <button class="btn btn-submit btn__primary" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ibox" style="max-width: 500px; margin-inline: auto;">
+        <div :class="`spinner-container${spinner2 ? ' active' : ''}`">
+            <div class="spinner"></div>
+        </div>
+        <div class="ibox-header">
+            <div class="ibox-name">Log Time</div>
+            <ul class="ibox-actions">
+                <li class="ibox-icon" x-on:click="onRefreshAddForm()">
+                    <i class="fa fa-refresh"></i>
+                </li>
+                <li class="ibox-icon">
+                    <i class="fa fa-gear"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="ibox-body">
+            <div class="ibox-content" style="resize: none">
+                <form x-on:submit.prevent="onSubmitAddLogTime()">
+                    <div class="form-group">
+                        <label class="form-label">Log Date <span class="text-red">*</span></label>
+                        <input class="form-control" type="date" x-model="addPayload.logDate" />
+                        <div class="form-message form-message__error" x-text="errors.logDate"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Activity Type <span class="text-red">*</span></label>
+                        <div class="form-select">
+                            <select class="form-control" x-model="addPayload.activityTypeId">
+                                <template x-for="activityType in activityTypeList" :key="activityType.id">
+                                    <option :value="activityType.id" x-text="activityType.name"></option>
+                                </template>
+                            </select>
+                        </div>
+                        <div class="form-message form-message__error" x-text="errors.activityType"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Duration <span class="text-red">*</span></label>
+                        <input class="form-control" type="number" step="0.25" x-model="addPayload.duration" />
+                        <div class="form-message form-message__error" x-text="errors.duration"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" x-model="addPayload.description"></textarea>
+                        <div class="form-message form-message__error"></div>
+                    </div>
+                    <button class="btn btn-submit btn__primary" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="ibox" class="ibox">
+        <div :class="`spinner-container${spinner1 ? ' active' : ''}`">
+            <div class="spinner"></div>
+        </div>
+        <div class="ibox-header">
+            <div class="ibox-name">Log Time Summary</div>
+            <ul class="ibox-actions">
+                <li class="ibox-icon" x-on:click="onRefresh()">
+                    <i class="fa fa-refresh"></i>
+                </li>
+                <li class="ibox-icon">
+                    <i class="fa fa-download"></i>
+                </li>
+                <li class="ibox-icon">
+                    <i class="fa fa-gear"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="ibox-body">
+            <div class="ibox-engine">
+                <div class="ibox-size">
+                    <label>Size</label>
+                    <select name="size" x-model="pageSize">
+                        <template x-for="(size, index) in sizeList" :key="index">
+                            <option :value="size" x-text="size"></option>
+                        </template>
+                    </select>
+                </div>
+                <div class="ibox-search">
+                    <label>Search</label>
+                    <input x-model="searchQuery" type="search" id="ibox-filter" class="ibox-filter">
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="ibox-table table">
+                    <thead class="table-head">
+                        <tr class="table-row">
+                            <th class="table-col__head">ID</th>
+                            <th class="table-col__head">Log Date</th>
+                            <th class="table-col__head">Activity Type</th>
+                            <th class="table-col__head">Duration</th>
+                            <th class="table-col__head">Actions</th>
+                        </tr>
+                    </thead>
+                    <template x-if="paginatedLogTimeList.length > 0">
+                        <tbody class="table-body">
+                            <template x-for="logTime in paginatedLogTimeList" :key="logTime.id">
+                                <tr class="table-row">
+                                    <td class="table-col" x-text="logTime.id"></td>
+                                    <td class="table-col" x-text="logTime.logDate"></td>
+                                    <td class="table-col" x-text="logTime.activityTypeName"></td>
+                                    <td class="table-col" x-text="logTime.duration"></td>
+                                    <td class="table-col">
+                                        <div class="table-actions">
+                                            <button class="ibox-edit" x-on:click="openModal(logTime)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button class="ibox-delete" x-on:click="onDeleteLogTime(logTime.id)">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </template>
+                    <template x-if="paginatedLogTimeList.length <= 0">
+                        <tbody class="table-body">
+                            <tr class="table-row">
+                                <td colspan="6" class="table-col">
+                                    <div class="table-notfound">
+                                        <i class="fa fa-inbox"></i>
+                                        <div>No Results Found</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </template>
+                </table>
+            </div>
+        </div>
+        <div class="ibox-footer">
+            <div class="ibox-info" x-text="`Showing ${startPage + 1} to ${endPage} of ${filteredLogTimeList.length} entries`"></div>
+            <ul class="pagination">
+                <li x-on:click.prevent="prevPage()">
+                    <a :class="`pagination-btn${currentPage === 1 ? ' disabled' : ''}`">
+                        Previous
+                    </a>
+                </li>
+                <template x-for="n in totalPages">
+                    <li x-on:click="setCurrentPage(n)" x-text="n" :class="`pagination-btn${n === currentPage ? ' active' : ''}`"></li>
+                </template>
+                <li x-on:click.prevent="nextPage()">
+                    <a :class="`pagination-btn${currentPage === totalPages ? ' disabled' : ''}`">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+<script src="~/js/app/services/home.service.js" type="module"></script>
 

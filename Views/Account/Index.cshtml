@@ -10,11 +10,11 @@
     </div>
     <form method="post" x-on:submit.prevent="submitLogin">
         <div class="form-group form-group__none-label">
-            <input x-model="payload.email" class="form-control" placeholder=" " autocomplete="off" />
+            <input x-model="payload.email" class="form-control text-white" placeholder=" " autocomplete="off" />
             <label class="form-label">Email</label>
         </div>
         <div class="form-group form-group__none-label">
-            <input x-model="payload.password" type="password" class="form-control" placeholder=" " />
+            <input x-model="payload.password" type="password" class="form-control text-white" placeholder=" " />
             <label class="form-label">Password</label>
         </div>
         <div x-text="message" class="text-error"></div>
@@ -22,6 +22,7 @@
     </form>
 </div>
 
-<script src="~/js/app/login.js" type="module"></script>
+<script src="~/js/app/services/account.service.js" type="module"></script>
+
 
 

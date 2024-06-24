@@ -7,6 +7,12 @@
         margin-bottom: 24px;
 
         &__none-label {
+            .form-control {
+                border: 0;
+                border-radius: 0;
+                border-bottom: 1px solid #eee;
+            }
+
             .form-control:focus + .form-label, .form-control:not(:placeholder-shown) + .form-label {
                 top: 0;
                 left: 5px;
@@ -20,6 +26,7 @@
                 left: 20px;
                 transform: translateY(-50%);
                 pointer-events: none;
+                color: #cccccc;
             }
         }
     }
@@ -44,11 +51,54 @@
         }
     }
 
+    &-select {
+        position: relative;
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: 1px solid #eee;
+            color: inherit;
+            height: 40px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            border-left: 0.3rem solid transparent;
+            border-right: 0.3rem solid transparent;
+            border-top: 0.3rem solid grey;
+        }
+    }
+
     &-label {
         display: inline-block;
         color: #555;
         margin-bottom: 5px;
         transition: all 0.2s ease-in;
         font-weight: 700;
+    }
+
+    &-message {
+        margin-left: 4px;
+        line-height: 1.5;
+
+        &__error {
+            color: red;
+        }
     }
 }

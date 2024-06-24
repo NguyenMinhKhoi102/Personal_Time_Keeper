@@ -20,6 +20,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        ViewBag.DashBoardId = 1;
         return View();
     }
 

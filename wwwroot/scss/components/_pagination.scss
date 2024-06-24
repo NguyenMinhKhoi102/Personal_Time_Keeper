@@ -1,0 +1,26 @@
+﻿.pagination {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: #333;
+
+    &-btn {
+        display: inline-block;
+        border: 1px solid #dddddd;
+        border-radius: 2px;
+        padding: 6px 10px;
+        cursor: pointer;
+        transition: all 0.25s ease-in-out;
+
+        &.active {
+            border-color: #337ab7;
+            background: #337ab7;
+            color: #fff;
+        }
+
+        &.disabled {
+            color: #dddddd;
+            cursor: not-allowed;
+        }
+    }
+}

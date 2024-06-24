@@ -1,4 +1,38 @@
-﻿.edit {
+﻿#login {
+    height: 100vh;
+    background: center / cover no-repeat rgb(46, 6, 128) url("https://srm.siliconstack.com.au/images/frame.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 16px;
+}
+
+.login {
+    &-form {
+        width: 100%;
+        max-width: 500px;
+        padding: 40px 80px;
+        background: rgba(27, 1, 83, 0.2);
+    }
+
+    &-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    &-slogan {
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 46px;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+}
+
+.edit {
 
 
     &-page {

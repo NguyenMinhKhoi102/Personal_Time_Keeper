@@ -22,6 +22,7 @@ namespace MyProject.Service
             try
             {
                 var account = await _context.Accounts.FindAsync(accountId);
+
                 if (account == null)
                 {
                     Console.WriteLine("Account not found");
@@ -121,7 +122,7 @@ namespace MyProject.Service
 
         public async Task<List<LogTimeResponse>> GetByAccountId(int accountId)
         {
-            var account = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == accountId);
+            var account = await _context.Accounts.Include(a => a.LogTimes).ThenInclude(lt => lt.ActivityType).FirstOrDefaultAsync(a => a.Id == accountId);
 
             if (account == null || account.LogTimes == null)
                 return new List<LogTimeResponse>();
@@ -131,6 +132,7 @@ namespace MyProject.Service
                 Id = at.Id,
                 LogDate = at.LogDate,
                 Duration = at.Duration,
+                ActivityTypeId = at.ActivityType.Id,
                 ActivityTypeName = at.ActivityType.Name,
                 Description = at.Description
             }).ToList();
@@ -150,6 +152,7 @@ namespace MyProject.Service
                 Id = logTime.Id,
                 LogDate = logTime.LogDate,
                 Duration = logTime.Duration,
+                ActivityTypeId = logTime.ActivityType.Id,
                 ActivityTypeName = logTime.ActivityType.Name,
                 Description = logTime.Description
             };

@@ -14,7 +14,7 @@ document.addEventListener('alpine:init', () => {
                     const rs = await axios.post("/api/account/login", this.payload);
                     window.location.href = "/";
                 } catch (errors) {
-                    this.message = "Email or password were incorrect";
+                    this.message = "Email or password was incorrect";
                     console.error(errors);
                 }
             },

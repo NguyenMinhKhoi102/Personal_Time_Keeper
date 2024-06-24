@@ -33,9 +33,27 @@
                     </div>
                 </div>
                 <div class="header-right">
+                    <div class="header-gadget gadget">
+                        <div class="gadget-icon">
+                            <i class="fa fa-dashboard"></i>
+                        </div>
+                        <div class="gadget-content">
+                            <div class="gadget-title">0/40 hrs</div>
+                            <div class="gadget-subtitle">This week</div>
+                        </div>
+                    </div>
+                    <div class="header-gadget gadget">
+                        <div class="gadget-icon">
+                            <i class="fa fa-dashboard"></i>
+                        </div>
+                        <div class="gadget-content">
+                            <div class="gadget-title">144/160 hrs</div>
+                            <div class="gadget-subtitle">Last 4 weeks</div>
+                        </div>
+                    </div>
                     <form asp-action="Logout" asp-controller="Account" method="post">
                         @Html.AntiForgeryToken()
-                        <button type="submit"><i class="fa fa-sign-out"></i> Logout</button>
+                        <button type="submit" class="btn btn-logout"><i class="fa fa-sign-out"></i> Logout</button>
                     </form>
                 </div>
             </header>
@@ -56,19 +74,26 @@
                                     </div>
                                 </div>
                                 <ul class="dropdown-list">
+                                    <a href="/Account/Edit">
                                     <li class="dropdown-item">Profile</li>
-                                    <li class="dropdown-item">Logout</li>
+                                    </a>
+                                    <form asp-action="Logout" asp-controller="Account" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
                                 </ul>
                             </div>
                         </div>
                         <ul class="sider-main">
-                            <template x-for="n in 2">
-                                <li class="sider-item">
+                            <template x-for="n in 1">
+                                <a href="/Home/Index">
+                                <li class="sider-item@(ViewBag.DashBoardId == 1 ? " active" : "")">
                                     <div class="sider-icon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
                                     <span class="sider-text">Log work</span>
                                 </li>
+                                </a>
                             </template>
                         </ul>
                         <ul class="sider-footer">

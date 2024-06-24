@@ -57,48 +57,26 @@ body {
 }
 
 .text-red {
-  color: red;
+  color: red !important;
 }
 
-#login {
-  height: 100vh;
-  background: center/cover no-repeat rgb(46, 6, 128) url("https://srm.siliconstack.com.au/images/frame.png");
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding: 16px;
-}
-#login .login-form {
-  width: 100%;
-  max-width: 500px;
-  padding: 40px 80px;
-  background: rgba(27, 1, 83, 0.2);
-}
-#login .login-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-#login .login-slogan {
-  font-size: 38px;
-  font-weight: 600;
-  line-height: 46px;
-  text-align: center;
+.text-white {
+  color: white !important;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
-  background: #31bfe0;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  background: #2fa4e7;
   padding: 10px;
-  color: #330066;
+  color: whitesmoke;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
+  z-index: 999;
   box-shadow: 0 0 2px grey;
 }
 .header-left {
@@ -119,12 +97,13 @@ body {
 }
 .header-icon:hover {
   background-color: gainsboro;
+  color: #330066;
 }
 .header-logo {
-  height: 70%;
+  height: 40px;
+  padding-block: 5px;
 }
 .header-logo img {
-  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -132,17 +111,21 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
+  gap: 24px;
 }
 
 .main {
   display: flex;
 }
 .main-sider {
-  background: #31bfe0;
+  background: rgba(47, 164, 231, 0.8980392157);
   width: 70px;
   height: calc(100vh - 60px);
   transition: all 0.25s ease-in;
   overflow: hidden;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 60px;
 }
 .main-sider.active {
   width: 220px;
@@ -208,6 +191,11 @@ body {
   border-radius: 4px;
   display: flex;
   gap: 8px;
+  color: #111111;
+}
+.sider-item.active {
+  background-color: rgb(244, 51, 132);
+  color: whitesmoke;
 }
 .sider-item:hover {
   background-color: rgba(0, 0, 0, 0.1725490196);
@@ -217,6 +205,36 @@ body {
   visibility: hidden;
   white-space: nowrap;
   transition: all 0.25s ease-in;
+}
+
+#login {
+  height: 100vh;
+  background: center/cover no-repeat rgb(46, 6, 128) url("https://srm.siliconstack.com.au/images/frame.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 16px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 80px;
+  background: rgba(27, 1, 83, 0.2);
+}
+.login-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.login-slogan {
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 46px;
+  text-align: center;
+  margin-bottom: 12px;
 }
 
 .edit-page {
@@ -266,14 +284,23 @@ body {
   display: inline-block;
   padding: 8px 16px;
   border-color: transparent;
-  background-color: rgb(244, 51, 132);
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 4px;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
   border-radius: 4px;
+  background-color: rgb(244, 51, 132);
+}
+.btn__primary {
+  background-color: #337ab7;
+}
+.btn-logout {
+  background: none;
+  box-shadow: none;
+  margin: 0;
 }
 .btn-submit {
   display: block;
@@ -331,7 +358,10 @@ body {
 }
 .dropdown-item {
   padding: 12px;
+  text-align: left;
+  width: 100%;
   border-bottom: 1px solid gainsboro;
+  color: #111111;
 }
 .dropdown-item:last-child {
   border: 0;
@@ -348,6 +378,11 @@ body {
   color: grey;
   margin-bottom: 24px;
 }
+.form-group__none-label .form-control {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #eee;
+}
 .form-group__none-label .form-control:focus + .form-label, .form-group__none-label .form-control:not(:placeholder-shown) + .form-label {
   top: 0;
   left: 5px;
@@ -360,6 +395,7 @@ body {
   left: 20px;
   transform: translateY(-50%);
   pointer-events: none;
+  color: #cccccc;
 }
 .form-control {
   display: block;
@@ -379,12 +415,210 @@ body {
   background-color: #eee;
   opacity: 1;
 }
+.form-select {
+  position: relative;
+}
+.form-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 1px solid #eee;
+  color: inherit;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.form-select:after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  border-left: 0.3rem solid transparent;
+  border-right: 0.3rem solid transparent;
+  border-top: 0.3rem solid grey;
+}
 .form-label {
   display: inline-block;
   color: #555;
   margin-bottom: 5px;
   transition: all 0.2s ease-in;
   font-weight: 700;
+}
+.form-message {
+  margin-left: 4px;
+  line-height: 1.5;
+}
+.form-message__error {
+  color: red;
+}
+
+.gadget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gadget-icon {
+  font-size: 25px;
+}
+.gadget-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.gadget-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+.gadget-subtitle {
+  font-size: 10px;
+}
+
+.ibox {
+  position: relative;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1px;
+  color: #676a6c;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.ibox .fa {
+  font-size: 14px;
+}
+.ibox .fa-refresh {
+  color: #4CAF50;
+}
+.ibox .fa-download, .ibox .fa-edit {
+  color: #178acc;
+}
+.ibox .fa-gear {
+  color: grey;
+}
+.ibox .fa-trash-o {
+  color: red;
+}
+.ibox .fa:hover {
+  opacity: 0.5;
+}
+.ibox label {
+  font-weight: bold;
+  font-size: 13px;
+}
+.ibox input, .ibox select {
+  color: #676a6c;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  outline: none;
+  padding-block: 4px;
+}
+.ibox-filter {
+  padding-inline: 8px;
+}
+.ibox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #e7eaec;
+}
+.ibox-body {
+  padding: 12px;
+}
+.ibox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px;
+  gap: 12px;
+  border-top: 1px solid #e7eaec;
+}
+.ibox-name {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+  text-align: center;
+}
+.ibox-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ibox-size, .ibox-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ibox-content {
+  position: relative;
+  overflow: auto;
+  height: max-content;
+  min-height: 230px;
+  resize: vertical;
+}
+.ibox-engine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.ibox-table {
+  min-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000000000000000000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.368627451);
+}
+.modal-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #333;
+}
+.pagination-btn {
+  display: inline-block;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.pagination-btn.active {
+  border-color: #337ab7;
+  background: #337ab7;
+  color: #fff;
+}
+.pagination-btn.disabled {
+  color: #dddddd;
+  cursor: not-allowed;
 }
 
 .spinner {
@@ -421,6 +655,43 @@ body {
   to {
     transform: rotate(1turn);
   }
+}
+.table {
+  border-collapse: collapse;
+}
+.table-body .table-row:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+.table-body .table-row:nth-child(even) {
+  background-color: #ffffff;
+}
+.table-row {
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #eeeeee;
+}
+.table-row:last-child {
+  border-top: none;
+  border-bottom: 1px solid #111111;
+}
+.table-col, .table-col__head {
+  padding: 10px 18px;
+  text-align: left;
+  min-width: 100px;
+}
+.table-col__head {
+  font-weight: bold;
+}
+.table-actions, .table-notfound {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.table-notfound {
+  flex-direction: column;
+}
+.table-notfound .fa {
+  font-size: 100px;
+  color: #DFE1E6;
 }
 
 /*# sourceMappingURL=site.css.map */

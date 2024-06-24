@@ -1,0 +1,24 @@
+﻿.gadget {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &-icon {
+        font-size: 25px;
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &-title {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    &-subtitle {
+        font-size: 10px;
+    }
+}
