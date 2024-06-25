@@ -1,5 +1,14 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿document.addEventListener('alpine:init', () => {
+    Alpine.store('user', {
+        info: {},
 
-// Write your JavaScript code.
-
+        async fetchInfoUser() {
+            try {
+                const rs = await axios.get("/api/account/info");
+                this.info = rs.data;
+            } catch (errors) {
+                console.error(errors);
+            }
+        },
+    })
+})

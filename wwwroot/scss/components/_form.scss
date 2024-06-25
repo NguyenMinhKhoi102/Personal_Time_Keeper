@@ -6,6 +6,11 @@
         color: grey;
         margin-bottom: 24px;
 
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
         &__none-label {
             .form-control {
                 border: 0;

@@ -79,7 +79,6 @@
             try {
                 this.spinner1 = true;
                 const rs = await axios.get("/api/logTime");
-                console.log(rs.data);
                 this.logTimeList = rs.data;
                 this.paginatedLogTimeList = rs.data;
                 this.filterLogTimeList();
@@ -94,14 +93,12 @@
 
         async fetchActivityTypeList() {
             try {
-                console.log(document.cookie);
                 this.spinner2 = true;
                 const rs = await axios.get("/api/activityType");
                 this.activityTypeList = rs.data;
                 this.addPayload.activityTypeId = rs.data[0].id;
-                console.log(rs.data);
             } catch (errors) {
-                console.log(errors);
+                console.error(errors);
             } finally {
                 setTimeout(() => {
                     this.spinner2 = false;
@@ -154,8 +151,6 @@
                     alert(rs.data.message);
                     this.onRefresh();
                     this.onRefreshAddForm();
-                } else {
-                    console.log(this.errors);
                 }
             } catch (errors) {
                 console.error(errors);
@@ -170,8 +165,6 @@
                     this.modalStatus = false;
                     alert(rs.data.message);
                     this.onRefresh();
-                } else {
-                    console.log(this.errors);
                 }
             } catch (errors) {
                 console.error(errors);

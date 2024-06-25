@@ -36,7 +36,9 @@
                 } catch (errors) {
                     console.error(errors);
                 } finally {
-                    this.spinner = false;
+                    setTimeout(() => {
+                        this.spinner = false;
+                    }, 300);
                 }
             },
 
@@ -44,10 +46,13 @@
                 try {
                     this.spinner = true;
                     const rs = await axios.post("/api/account/edit", this.payload);
+                    alert("Edit account successsfully");
                 } catch (errors) {
                     console.error(errors);
                 } finally {
-                    this.spinner = false;
+                    setTimeout(() => {
+                        this.spinner = false;
+                    }, 300);
                 }
             },
         }

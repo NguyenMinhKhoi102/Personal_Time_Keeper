@@ -22,7 +22,7 @@
     }
     else
     {
-        <div id="app" x-data="{siderStatus: true}">
+        <div id="app" x-data="{siderStatus: true}" x-init="$store.user.fetchInfoUser()">
             <header class="header">
                 <div class="header-left">
                     <div class="header-icon" x-on:click="siderStatus = !siderStatus">
@@ -66,8 +66,7 @@
                             </a>
                             <div :class="`dropdown${open ? ' active': ''}`" x-data="{ open: false }" x-on:click="open = !open">
                                 <div class="dropdown-select">
-                                    <div class="dropdown-value">
-                                        Khoi Nguyen
+                                    <div class="dropdown-value" x-text="$store.user.info.fullName">
                                     </div>
                                     <div class="dropdown-icon">
                                         <i class="fa fa-caret-down"></i>
