@@ -94,6 +94,7 @@
 
         async fetchActivityTypeList() {
             try {
+                console.log(document.cookie);
                 this.spinner2 = true;
                 const rs = await axios.get("/api/activityType");
                 this.activityTypeList = rs.data;

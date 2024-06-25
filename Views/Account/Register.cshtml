@@ -4,18 +4,31 @@
 
 @model Account
 
-<form asp-action="Register" method="post">
-    <div class="form-group">
-        <input asp-for="Email" class="form-control" placeholder=" " autocomplete="off" />
-        <label asp-for="Email" class="form-label"></label>
+<div class="login-form">
+    <div class="login-logo">
+        <img src="https://srm.siliconstack.com.au/images/login-logo.png" alt="">
     </div>
-    <div class="form-group">
-        <input asp-for="Password" type="password" class="form-control" placeholder=" " />
-        <label asp-for="Password" class="form-label"></label>
+    <div class="login-slogan">
+        Account Register
     </div>
-    <div class="form-group">
-        <input name="PasswordConfirmation" type="password" class="form-control" placeholder=" " />
-        <label class="form-label">Confirm Password</label>
-    </div>
-    <button type="submit" class="btn btn-submit">Register</button>
-</form>
+    <form asp-action="Register" method="post">
+        <div class="form-group form-group__none-label">
+            <input asp-for="FullName" class="form-control" placeholder=" " autocomplete="off" />
+            <label asp-for="FullName" class="form-label"></label>
+        </div>
+        <div class="form-group form-group__none-label">
+            <input asp-for="Email" class="form-control" placeholder=" " autocomplete="off" />
+            <label asp-for="Email" class="form-label"></label>
+        </div>
+        <div class="form-group form-group__none-label">
+            <input asp-for="Password" type="password" class="form-control" placeholder=" " />
+            <label asp-for="Password" class="form-label"></label>
+        </div>
+        <div class="form-group form-group__none-label">
+            <input name="PasswordConfirmation" type="password" class="form-control" placeholder=" " />
+            <label class="form-label">Confirm Password</label>
+        </div>
+        <button type="submit" class="btn btn-submit">Register</button>
+    </form>
+</div>
+
