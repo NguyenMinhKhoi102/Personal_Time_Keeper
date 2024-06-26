@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyProject.AppData;
 using MyProject.Service;
+using MyProject.DataSeeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +56,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+await ActivityTypeDataSeeder.SeedDataBase(app.Services);
 
 app.Run();
 

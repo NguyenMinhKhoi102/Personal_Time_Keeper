@@ -27,6 +27,7 @@
     <None Remove="Payload\Request\" />
     <None Remove="Service\" />
     <None Remove="Payload\Response\" />
+    <None Remove="DataSeeder\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppData\" />
@@ -45,6 +46,7 @@
     <Folder Include="wwwroot\vendor\" />
     <Folder Include="wwwroot\js\app\" />
     <Folder Include="wwwroot\js\app\services\" />
+    <Folder Include="DataSeeder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\scss\" />
